@@ -3,29 +3,64 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive USA Map</title>
     <style>
+        #us-map-container {
+            width: 100%;
+            max-width: 1200px;
+            margin: auto;
+            overflow: hidden;
+        }
+
         #us-map {
             width: 100%;
-            max-width: 1000px;
-            margin: auto;
+            height: auto;
+            display: block;
+        }
+
+        .state {
+            fill: #cccccc; /* Default state color */
+            stroke: #000000; /* Border color */
+            cursor: pointer;
+            transition: fill 0.3s;
+        }
+
+        .state:hover {
+            fill: #007BFF; /* Hover color */
         }
     </style>
 </head>
 <body>
+    <h1>Interactive USA Map</h1>
     <div id="us-map-container">
+        <!-- Embed the external SVG file -->
         <object id="us-map" type="image/svg+xml" data="https://kparkey88.github.io/centillionlumos/usaLow.svg"></object>
     </div>
     <script>
-        // Add interactivity once the SVG loads
+        // Add interactivity to specific states in the embedded SVG
         document.getElementById('us-map').addEventListener('load', function () {
             const svgDoc = this.contentDocument; // Access the embedded SVG document
-            svgDoc.querySelectorAll('.state').forEach(state => {
-                state.addEventListener('click', function () {
-                    const url = this.getAttribute('data-url');
-                    if (url) {
+
+            // Define states and their corresponding URLs
+            const states = [
+                { id: 'IL', url: 'https://example.com/illinois' }, // Illinois
+                { id: 'OH', url: 'https://example.com/ohio' },     // Ohio
+                { id: 'IN', url: 'https://example.com/indiana' },  // Indiana
+                { id: 'KY', url: 'https://example.com/kentucky' }, // Kentucky
+                { id: 'SC', url: 'https://example.com/south-carolina' }, // South Carolina
+                { id: 'GA', url: 'https://example.com/georgia' },  // Georgia
+                { id: 'FL', url: 'https://example.com/florida' },  // Florida
+                { id: 'AL', url: 'https://example.com/alabama' }   // Alabama
+            ];
+
+            // Add event listeners for the defined states
+            states.forEach(({ id, url }) => {
+                const state = svgDoc.getElementById(id); // Find the state by its ID
+                if (state) {
+                    state.addEventListener('click', () => {
                         window.open(url, '_blank'); // Open link in a new tab
-                    }
-                });
+                    });
+                }
             });
         });
     </script>
