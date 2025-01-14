@@ -10,36 +10,24 @@
             max-width: 800px;
             margin: auto;
         }
-        .state {
-            fill: #cccccc; /* Default state color */
-            stroke: #000000; /* Border color */
-            cursor: pointer;
-            transition: fill 0.3s;
-        }
-        .state:hover {
-            fill: #007BFF; /* Hover color */
-        }
     </style>
 </head>
 <body>
     <h1>Interactive USA Map</h1>
     <div id="us-map-container">
-        <!-- SVG Map goes here -->
-        <svg id="us-map" xmlns="https://kparkey88.github.io/centillionlumos/usaLow.svg" viewBox="0 0 959 593">
-            <!-- Example: Two states (California and Texas) -->
-            <path id="CA" class="state" d="M..." data-url="https://example.com/california" />
-            <path id="TX" class="state" d="M..." data-url="https://example.com/texas" />
-            <!-- Add paths for other states -->
-        </svg>
+        <object id="us-map" type="image/svg+xml" data="https://kparkey88.github.io/centillionlumos/usaLow.svg"></object>
     </div>
     <script>
-        // Add click event listener to each state
-        document.querySelectorAll('.state').forEach(state => {
-            state.addEventListener('click', function () {
-                const url = this.getAttribute('data-url');
-                if (url) {
-                    window.open(url, '_blank'); // Opens link in a new tab
-                }
+        // Add interactivity once the SVG loads
+        document.getElementById('us-map').addEventListener('load', function () {
+            const svgDoc = this.contentDocument; // Access the embedded SVG document
+            svgDoc.querySelectorAll('.state').forEach(state => {
+                state.addEventListener('click', function () {
+                    const url = this.getAttribute('data-url');
+                    if (url) {
+                        window.open(url, '_blank'); // Open link in a new tab
+                    }
+                });
             });
         });
     </script>
