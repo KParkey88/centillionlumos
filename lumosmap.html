@@ -78,7 +78,7 @@
 
                     // Add click event
                     state.addEventListener('click', () => {
-                        window.location.href = url; // Redirect in the same window
+                       window.parent.location.href = url; // Redirect in the same window
                     });
                 }
             });
