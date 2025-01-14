@@ -19,7 +19,7 @@
         }
 
         .state {
-            fill: #0004FA; /* Default non-hover color */
+            fill: #cccccc; /* Default color for all states */
             stroke: #000000; /* Border color */
             cursor: pointer;
             transition: fill 0.3s ease;
@@ -31,6 +31,7 @@
     </style>
 </head>
 <body>
+    <h1>Interactive USA Map</h1>
     <div id="us-map-container">
         <!-- Embed the external SVG file -->
         <object id="us-map" type="image/svg+xml" data="https://kparkey88.github.io/centillionlumos/usaLow.svg"></object>
@@ -40,16 +41,27 @@
         document.getElementById('us-map').addEventListener('load', function () {
             const svgDoc = this.contentDocument; // Access the embedded SVG document
 
+            // Define specific states to start with #0004FA
+            const highlightedStates = ['US-OH', 'US-IL', 'US-IN', 'US-GA', 'US-KY', 'US-FL', 'US-AL', 'US-SC'];
+
+            // Set custom color for the highlighted states
+            highlightedStates.forEach(stateId => {
+                const state = svgDoc.getElementById(stateId);
+                if (state) {
+                    state.style.fill = '#0004FA'; // Custom color for these states
+                }
+            });
+
             // Define states and their corresponding URLs
             const states = [
+                { id: 'US-OH', url: 'https://centillionsolhyd.sharepoint.com/sites/Lumos/SitePages/Ohio-Project-Tracker.aspx' }, // Ohio
                 { id: 'US-IL', url: 'https://example.com/illinois' }, // Illinois
-                { id: 'US-OH', url: 'https://centillionsolhyd.sharepoint.com/sites/Lumos/SitePages/Ohio-Project-Tracker.aspx' },     // Ohio
                 { id: 'US-IN', url: 'https://example.com/indiana' },  // Indiana
-                { id: 'US-KY', url: 'https://example.com/kentucky' }, // Kentucky
-                { id: 'US-SC', url: 'https://example.com/south-carolina' }, // South Carolina
                 { id: 'US-GA', url: 'https://example.com/georgia' },  // Georgia
+                { id: 'US-KY', url: 'https://example.com/kentucky' }, // Kentucky
                 { id: 'US-FL', url: 'https://example.com/florida' },  // Florida
-                { id: 'US-AL', url: 'https://example.com/alabama' }   // Alabama
+                { id: 'US-AL', url: 'https://example.com/alabama' },  // Alabama
+                { id: 'US-SC', url: 'https://example.com/south-carolina' } // South Carolina
             ];
 
             // Add event listeners for hover and click
@@ -61,7 +73,8 @@
                         state.style.fill = '#290350'; // Hover color
                     });
                     state.addEventListener('mouseleave', () => {
-                        state.style.fill = '#0004FA'; // Default non-hover color
+                        // Reset to default or custom color
+                        state.style.fill = highlightedStates.includes(id) ? '#0004FA' : '#cccccc';
                     });
 
                     // Add click event
