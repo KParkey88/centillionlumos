@@ -22,7 +22,7 @@
             fill: #cccccc; /* Default state color */
             stroke: #000000; /* Border color */
             cursor: pointer;
-            transition: fill 0.3s;
+            transition: fill 0.3s ease;
         }
 
         .state:hover {
@@ -31,7 +31,6 @@
     </style>
 </head>
 <body>
-    <h1>Interactive USA Map</h1>
     <div id="us-map-container">
         <!-- Embed the external SVG file -->
         <object id="us-map" type="image/svg+xml" data="https://kparkey88.github.io/centillionlumos/usaLow.svg"></object>
@@ -53,10 +52,19 @@
                 { id: 'US-AL', url: 'https://example.com/alabama' }   // Alabama
             ];
 
-            // Add event listeners for the defined states
+            // Add event listeners for hover and click
             states.forEach(({ id, url }) => {
                 const state = svgDoc.getElementById(id); // Find the state by its ID
                 if (state) {
+                    // Add hover effect via JavaScript
+                    state.addEventListener('mouseenter', () => {
+                        state.style.fill = '#007BFF'; // Hover color
+                    });
+                    state.addEventListener('mouseleave', () => {
+                        state.style.fill = '#cccccc'; // Default color
+                    });
+
+                    // Add click event
                     state.addEventListener('click', () => {
                         window.open(url, '_blank'); // Open link in a new tab
                     });
