@@ -54,13 +54,13 @@
             // Define states and their corresponding URLs
             const states = [
                 { id: 'US-OH', url: 'https://centillionsolhyd.sharepoint.com/sites/Lumos/SitePages/Ohio-Project-Tracker.aspx' }, // Ohio
-                { id: 'US-IL', url: 'https://example.com/illinois' }, // Illinois
-                { id: 'US-IN', url: 'https://example.com/indiana' },  // Indiana
-                { id: 'US-GA', url: 'https://example.com/georgia' },  // Georgia
-                { id: 'US-KY', url: 'https://example.com/kentucky' }, // Kentucky
-                { id: 'US-FL', url: 'https://example.com/florida' },  // Florida
-                { id: 'US-AL', url: 'https://example.com/alabama' },  // Alabama
-                { id: 'US-SC', url: 'https://example.com/south-carolina' } // South Carolina
+                { id: 'US-IL', url: 'https://centillionsolhyd.sharepoint.com/sites/Lumos/SitePages/Illinois-Project-Tracker.aspx' }, // Illinois
+                { id: 'US-IN', url: 'https://centillionsolhyd.sharepoint.com/sites/Lumos/SitePages/Indiana-Project-Tracker.aspx' },  // Indiana
+                { id: 'US-GA', url: 'https://centillionsolhyd.sharepoint.com/sites/Lumos/SitePages/Georgia-Project-Tracker.aspx' },  // Georgia
+                { id: 'US-KY', url: 'https://centillionsolhyd.sharepoint.com/sites/Lumos/SitePages/Kentucky-Project-Tracker.aspx' }, // Kentucky
+                { id: 'US-FL', url: 'https://centillionsolhyd.sharepoint.com/sites/Lumos/SitePages/Florida-Project-Tracker.aspx' },  // Florida
+                { id: 'US-AL', url: 'https://centillionsolhyd.sharepoint.com/sites/Lumos/SitePages/Alabama-Project-Tracker.aspx' },  // Alabama
+                { id: 'US-SC', url: 'https://centillionsolhyd.sharepoint.com/sites/Lumos/SitePages/South-Carolina-Project-Tracker.aspx' } // South Carolina
             ];
 
             // Add event listeners for hover and click
@@ -78,7 +78,7 @@
 
                     // Add click event
                     state.addEventListener('click', () => {
-                        window.open(url, '_blank'); // Open link in a new tab
+                        window.location.href = url; // Redirect in the same window
                     });
                 }
             });
